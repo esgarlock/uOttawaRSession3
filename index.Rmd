@@ -1,30 +1,317 @@
 ---
-title: "R Session 3"
+title: 'R Part 3: Basic Data Tidying'
 author: "Emma Garlock"
-date: "2025-07-02"
-output: html_document
+date: "July 10th, 2025"
+output:
+  html_document:
+    theme: journal
+    toc: true
+    toc_float:
+      collapsed: true
+  pdf_document:
+    toc: true
+  word_document:
+    toc: true
 ---
+  
+# Introduction  
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+> In this session, we are going to learn some basics about cleaning data in R.
+> The folder for this session is available at [https://tinyurl.com/45vxsawu](https://tinyurl.com/45vxsawu).  
+> 
+> ![](notebook_images/QR.png)
+>
+> For this session you will need:   
+> 
+> * FileA_RMarkdown_uOttawabiblio.rmd 
+>     + *This is the same notebook that I will be showing with the code removed*
+>     + *It's not necessary for you to use this file, you can also do it in a completely new notebook or R script* 
+>  * data/
+>     + SciHub_SampleData.csv  
+>     + SciHubDOI.csv  
+> 
+> There are other files  
+>  
+> * FileB_MarkDown_uOttawabiblio.rmd  
+>   + *this is the same file as above, but with the code already there*   
+> * FileB_MarkDown_uOttawabiblio.nb.html 
+>   + *this is this the html file of the completed notebook*  
+> * notebook_images/ 
+>   + *this is just the images that are in the notebook* 
+> 
+> 
+> But first we are going to have a general orientation about R Studio. If you are going through this at a later date, you can watch [this](https://www.youtube.com/watch?v=FIrsOBy5k58) video. 
+
+When you first open R you should see this: 
+
+![RLanding](notebook_images/R_panel.png)
+Once you open a file, you should see this. 
+
+![RFile](notebook_images/r_4_panels.png)
+The above images are from the RDM Jumpstart Program. They also have introductory lessons on R, which are available [here](https://alliance-rdm-gdr.github.io/rdm-jumpstart/2-ACT-1-RSetup.html).  
+
+There's 3 key features of R 
+
+1.    R can do operations 
+
+```{r}
+125+65
+45*76 
+8959/32
+```
+2.    You can assign values to objects. Then do operations on the objects 
+
+```{r}
+x=3 
+y=6
+x*y
+```
++ These values can be characters 
+```{r}
+test_string="uOttawaBiblio"
+print(test_string)
+```
++ It can also be multiple values, these are what we call lists   
+```{r}
+test_number_list=c(2,4,6,7,8,3)
+test_character_list=c("Spring","Summer","Fall","Winter")
+```
++ They can also be dataframes 
+```{r eval=FALSE}
+df=read.csv("data/testfile.csv")
 ```
 
-## R Markdown
+3.    R has functions, and the functions are in packages.  
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+We have seen a function already. `print()` and `read.csv()` are baseR functions (aka default). The function is the thing outside the brackets, and you perform the function on the argument, which is inside the bracket. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+So, for the example above, the function was `print()`, and the argument was `"test_string"`.  
 
-```{r cars}
-summary(cars)
+To get extra functions, you need to download packages. Read more about functions and packages [here](https://bookdown.org/nana/intror/install-and-load-packages.html). 
+
+# Set Up  
+## Working Directory 
+First, we are going to set ourselves up in a working directory.  
+
+*Note: if you downloaded the whole folder, and you opened one of the provided files, ignore the advice about where to save things. It should all be organized already*   
+
+1. Save the R notebook or R Script file to somewhere that makes sense, this should be the same location where you have the data stored for this session. See the example below. 
+![FileSetUp](notebook_images/FileSetUp.png)
+
+2. Select `"Session"` from the top menu bar, then `"Set working directory"` then `"to Source file location"`. The directory should now be printed on the top of the console. See the example below.    
+
+## Installing Tidyverse 
+
+The following examples are going to be done using functions from `tidyverse`. `tidyverse` is a collection of packages that contain functions that are so commonly used for analyses, that people decided to just makes sure that you could download these all at once AND that they would be highly inter operable.You can learn more about `tidyverse` [here](https://r4ds.hadley.nz/data-transform.html) 
+
+![](notebook_images/tidy_workflow.png)  
+
+There are two ways to get a package for the first time, the first is to run `install.packages()` with the package name in the brackets, the second is to go over to the panel on the lower right, hit the `"Packages"` tab, then install and type `"tidyverse" `
+
+You do *not* have to install packages every time, but you *do* need to load them every time using `library()`
+
+
+Lets load our package: 
+```{r}
+#this is how you install using code, this is equivalent to going through the Packages panel. I've commented it out since I don't actually need to install 
+#install.packages("tidyverse") 
+#Loading the package
+library(tidyverse) 
 ```
 
-## Including Plots
+## Upload Data 
+Now, we can load our data, and assign it the name `scihub_df` Then take a look at the first few rows using the `head()` function.There is also a `tail()` function to see the last rows. For more info on uploading data and the different formats you can use, check out [this](https://intro2r.com/importing-data.html) 
 
-You can also embed plots, for example:
+I have elected to locate my data by specifying a file path. You could also do it like `scihub_df=read.csv(file.choose())` to open up a file explorer. 
+```{r}
+#upload the dataset, its located in the data file
+scihub_df=read.csv("data/SciHub_SampleData.csv") 
+#show the first 6 rows
+head(scihub_df) 
+```
+## Rename Columns       
+Looks good, but from experience, those titles column names might make life difficult later, lets rename them to something without spaces. We can then check to make sure the names were changed properly and we didn't mess anything up. 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+For more examples of how to rename columns check out [this](https://sparkbyexamples.com/r-programming/rename-column-in-r/) link. 
+
+We can then use the `names()` function to see what the names of the columns are. 
+ 
+```{r}
+#change the names of scihub_df. The list needs to be the same length as the number of columns 
+colnames(scihub_df)=c("Timestamp",
+                 "DOI",
+                 "IP_ID",
+                 "User_ID",
+                 "Country_GeoIP",
+                 "City_GeoIP",
+                 "Latitude",
+                 "Longitude")
+#just print the names of columns to confirm they are the new names 
+names(scihub_df)
+```
+ 
+# Information from Session 2
+## Basic Tidying and Analyses
+### Selecting Columns   
+`tidyverse` uses something called `"pipes"`, which look like `%>%` or `|>`, which tells R to automatically use the last output as the input for the next function. Lets see an example. 
+
+Let's say we only want a subset of the columns in `"scihub_df",` not all 8. We can use the `select()` function to get those
+
+```{r}
+#create new dataframe based on scihub_df, just selecting the 3 columns we cant 
+scihub_df_reduced=scihub_df%>%
+  select(Timestamp,DOI,City_GeoIP)#just selecting these three columns 
+#preview the first 6 rows so we can see if it did what we think it did 
+head(scihub_df_reduced)
+```
+### Filtering Rows 
+We could also go the other way, and only take certain rows. Let's say we only wanted rows where the city was "Ottawa", we can use the `filter()` function to find those. We can then use the `print()` function so see our new dataframe in the console. 
+
+*Note: this is case sensitive*
+
+```{r}
+#making a df that is just for Ottawa
+scihub_df_ottawa=scihub_df%>% #using the same original dataset
+  filter(City_GeoIP=="Ottawa") #select only the rows with "Ottawa" (case sensitive) int he City_GeoIP column
+#print the whole dataset since it's small
+print(scihub_df_ottawa)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+### Summarizing Groups 
+There are a lot of basic things we can do. Lets just try getting a summary of how many time each city appears in the dataset. We're going to use the `"scihub_df_reduced"` set (the one where we used `select()` to pick cetain columns). 
+
+We're going to start by using the `group_by()` function. The `group_by()` functions creates groups based on a certain column, and then all subsequent operations (eg. summing, averaging, counting) are done on a *per group* basis. Learn more about `group_by()` [here](https://r4ds.hadley.nz/data-transform.html).
+
+```{r}
+city_summary=scihub_df_reduced%>% #using the dataset with 3 columns 
+  group_by(City_GeoIP)%>% #make the groups based on city 
+  count() #count how many went into each group 
+#see first 6 rows (they are automatically sorted alphabetically by grouping variable (aka City_GeoIP))
+head(city_summary)
+```
+If you want to do a little sanity check, the sum of everything in column n should be 1000.      
+We can double check like this using the `sum()` function: 
+```{r}
+sum(city_summary$n)
+```
+### Fixing Typos 
+
+Did anyone notice anything about the summarized data?  
+
+Yes, we have two different spellings for Montréal.  
+
+Lets fix it.  
+
+We're not going to actually make a new dataset, we're just going to edit what we already did. By adding a new line *before* the `group_by()` where we use a function called `mutate()`. `mutate()` is a very versatile function and can be used for a lot of different applications. You can read more about that [here](https://bookdown.org/yih_huynh/Guide-to-R-Book/mutate.html).  
+
+One thing you can do with `mutate()` is called a `"nested function"` this is where you have a function *inside* another function. In this case we are going to use the `replace()` function. 
+
+The `replace()` function is formatted like this: `replace("column that we need to edit","what values in the column need to be edited,"What we want the new value to be")`  
+
+*Note: there are a lot of different ways to fix typos in data sets, this is just one of many.*   
+
+```{r}
+city_summary=scihub_df_reduced%>% #3 column dataset 
+  mutate(City_GeoIP = replace(City_GeoIP, City_GeoIP == "Montréal", "Montreal"))%>% #fixing the error 
+  group_by(City_GeoIP)%>%#set groups based on the city, same process as above :) 
+  count()
+
+```
+ If you remember, before we had 76 observations, now we have 75. 
+
+### Dates 
+Notice that we have a `timestamp` column, this has both date and the time. Could be useful, but maybe we just want the date. To do this, we are going to load a new package, called `lubridate` which is specifically used for working with date formats. 
+
+```{r}
+library(lubridate) #loading a package 
+```
+
+We actually have a few ways we could do this.   
+1. Use `lubridate` functions   
+2. Separate using the space as a delimiter.    
+3. Extract the first 10 characters of each row into it's own column   
+
+Let's do the 1st option. We are going to do another nested function with `mutate()` using the `ymd_hms()` function from `lubridate`  
+```{r}
+scihub_df_reduced_date=scihub_df%>% #start with the original dataset
+  select(Timestamp,DOI,City_GeoIP)%>% #select the columns we need 
+  mutate(Timestamp=ymd_hms(Timestamp))%>% #make sure the time is interpreted in the correct format 
+  mutate(Date=date(Timestamp)) #extract the date 
+
+head(scihub_df_reduced_date) #preview the top 6 
+```
+### The Separate function 
+Lets try it using the `separate()` function to get the time (Option 2)
+
+```{r}
+scihub_df_reduced_time=scihub_df%>% #same selection procedure as above 
+  select(Timestamp,DOI,City_GeoIP)%>%
+  separate(Timestamp, c("Date", "Time"), " ") #separate the date and time based on the space (the blank in between the quotes) and call the two new columns "Date" and "time" 
+
+head(scihub_df_reduced_time)
+```
+
+
+There is also a `paste()` function in R. It's very similar to the concatenate in Excel, and you can learn more about it [here](https://www.digitalocean.com/community/tutorials/paste-in-r).
+
+Finally, you will probably want to save your work after everything. To do this, we can use the `write.csv()` function. 
+
+The format for this is `write.csv(data, filepath)`. After running this, you can check the file location to see if a new file has appeared. 
+```{r}
+write.csv(scihub_df_reduced,"data/scihub_df_reduced.csv")
+```
+
+
+## Bonus Content if we get time    
+### Joins 
+So, we have this information about DOI, but what if we want more information? Luckily we have the title and other publication information available from Zotero, and we can export a csv from Zotero and "join" it to our existing dataset. 
+
+This csv is going to have a lot of columns. But maybe we only want DOI (Column 9), Title (Column 5) and Publication Year (Column 3). Before when we selected, we used the names of the columns, but we can also select based on the column number. 
+
+Notice that we were able to pipe the `read.csv` immediately into the `select()`
+
+```{r}
+zotero=read.csv("data/SciHubDOI.csv")%>%
+  select(9,5,3) #selecting based on position rather than name 
+head(zotero)
+```
+
+Now, lets join the datasets together. We are using `left_join()` here, but there are lots of different types of joins that you can learn more about [here](https://r4ds.hadley.nz/joins.html#sec-mutating-joins).  
+
+```{r}
+scihub_zotero=scihub_df_reduced%>%
+  left_join(zotero,by="DOI") #telling it to join the dataset zotero by the values in column DOI 
+
+head(scihub_zotero)
+```
+### Pivots 
+
+We're going to combine a few things we have seen so far. 
+1. making lists.     
+2. `group_by()`, but this time we will have TWO groupings.     
+3. `filter`, but this time with a list of options and not just one.   
+
+We're going to start with our reduced set. Let's refresh on what it looks like. 
+
+```{r}
+head(scihub_df_reduced)
+```
+We have 3 columns: Timestamp, DOI and City_GeoIP. But maybe we want to see how often each DOI comes up in each city and the organize the information so we have 1 column for each city. 
+
+For the sake of not creating a huge dataset, we're going to only include certain cities. Lets define those using a list. 
+
+```{r}
+cities_list=c("Ottawa","Toronto","Montreal","Burnaby")
+```
+
+Now we know what we're working with, we can string everything together. 
+The final line is `pivot_wider`, it will be easier to explain what it does after you have seen the final product. 
+```{r}
+scihub_pivot=scihub_df_reduced%>%
+  group_by(City_GeoIP,DOI)%>% #group by city and DOI, so we'll get a summary of the doi count per city 
+  count()%>%
+  filter(City_GeoIP %in% cities_list)%>% #filter, but only keep values that appear in cities_list
+  pivot_wider(id_cols=DOI,names_from=City_GeoIP,values_from=n)#here is the pivot, we say that the rows should be based on DOI, the new column names are going to be the city, and the values in the cells are the counts of that DOI in that city
+
+head(scihub_pivot)
+```
