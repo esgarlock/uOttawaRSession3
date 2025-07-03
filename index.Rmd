@@ -822,3 +822,139 @@ ggplot(network_df,aes(x = x, y = y, xend = xend, yend = yend))+
 * check the class of the columns you are trying to use using `class()`
 * check the factor levels with `levels()`
 * to check how many of each category you have use `table(df$col)`
+
+`Patchwork` is a lovely package that allows you to very simply arrange your plots in whatever manner you like. See the documentation [here](https://github.com/thomasp85/patchwork). You can see an example of how you would use it below. 
+
+```{r}
+(scatter_bw|scatter_light)/(scatter_dark|scatter_minimal)
+```
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  ggtitle("Removing All Gridlines")+
+  theme_bw()+
+  theme(panel.grid = element_blank())
+```
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  ggtitle("Removing All Vertical Lines")+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+### Modifying the legend 
+
+There are a lot of ways you can change the legend. You will probably need to do some research for your specific use case. There are options in `theme()` and options in `guide()` and a lot of others. 
+
+[This](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/) is normally where I go when I first start troubleshooting my legend problems. 
+
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  ggtitle("Renaming the Legends")+
+  guides(colour=guide_legend(title="Continent"),size=guide_legend(title="Population"))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
+### Colouring 
+
+Everybody's favourite part of plotting. There is A LOT of different ways you can colour your plots. So I advise you explore this when the time comes, but there are a lot of pre-set colour schemes that look great and are easy to implement. You can find resources on them [here](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually)
+
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  scale_colour_viridis_d()+
+  ggtitle("Scatterplot with Viridis Colouring")+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  guides(colour=guide_legend(title="Continent"),size=guide_legend(title="Population"))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  scale_colour_brewer(palette = "Paired")+
+  ggtitle("Scatterplot with Colour Brewer")+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  guides(colour=guide_legend(title="Continent"),size=guide_legend(title="Population"))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
+If you're going to get into manual colouring look [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) to figure out what kind of colours are available. 
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  scale_colour_manual(values=c("orangered3","slateblue","lightseagreen","orchid3","sienna2"))+
+  ggtitle("Scatterplot with Manual Colours")+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  guides(colour=guide_legend(title="Continent"),size=guide_legend(title="Population"))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
+If you are hoping to apply a specific colour to a specific category you can do it like this. 
+
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  scale_colour_manual(values=c("Americas"="orangered3","Asia"="slateblue","Africa"="lightseagreen","Europe"="orchid3","Oceania"="sienna2"))+
+  ggtitle("Scatterplot with Manual Colours-Assigned to Continent")+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  guides(colour=guide_legend(title="Continent"),size=guide_legend(title="Population"))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
+### Facets 
+
+Sometimes when you have a lot of data it can be useful to facet your plots. This is really easy! As you can see below. The different options for facets can be seen [here](https://www.datacamp.com/community/tutorials/facets-ggplot-r)
+
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  scale_colour_viridis_d()+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  guides(colour=guide_legend(title="Continent"),size=guide_legend(title="Population"))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())+
+  facet_grid(~continent)
+```
+
+You can see that the facet made our x-axis labels difficult to see. Luckily this is one of the many elements we can fix in `theme()`
+
+```{r}
+ggplot(scatter,aes(x=gdpPercap,y=lifeExp))+
+  geom_point(aes(colour=continent,size=pop))+
+  scale_colour_viridis_d()+
+  xlab(" GDP Per Capita")+
+  ylab("Life Expectancy")+
+  guides(colour=guide_legend(title="Continent"),size=guide_legend(title="Population"))+
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        axis.text.x = element_text(angle=45,vjust=0.5))+
+  facet_grid(~continent)
+```
+
+
+
