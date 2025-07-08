@@ -1,143 +1,261 @@
-"","country","continent","lifeExp","pop","gdpPercap"
-"1","Afghanistan","Asia",43.828,31889923,974.5803384
-"2","Albania","Europe",76.423,3600523,5937.029526
-"3","Algeria","Africa",72.301,33333216,6223.367465
-"4","Angola","Africa",42.731,12420476,4797.231267
-"5","Argentina","Americas",75.32,40301927,12779.37964
-"6","Australia","Oceania",81.235,20434176,34435.36744
-"7","Austria","Europe",79.829,8199783,36126.4927
-"8","Bahrain","Asia",75.635,708573,29796.04834
-"9","Bangladesh","Asia",64.062,150448339,1391.253792
-"10","Belgium","Europe",79.441,10392226,33692.60508
-"11","Benin","Africa",56.728,8078314,1441.284873
-"12","Bolivia","Americas",65.554,9119152,3822.137084
-"13","Bosnia and Herzegovina","Europe",74.852,4552198,7446.298803
-"14","Botswana","Africa",50.728,1639131,12569.85177
-"15","Brazil","Americas",72.39,190010647,9065.800825
-"16","Bulgaria","Europe",73.005,7322858,10680.79282
-"17","Burkina Faso","Africa",52.295,14326203,1217.032994
-"18","Burundi","Africa",49.58,8390505,430.0706916
-"19","Cambodia","Asia",59.723,14131858,1713.778686
-"20","Cameroon","Africa",50.43,17696293,2042.09524
-"21","Canada","Americas",80.653,33390141,36319.23501
-"22","Central African Republic","Africa",44.741,4369038,706.016537
-"23","Chad","Africa",50.651,10238807,1704.063724
-"24","Chile","Americas",78.553,16284741,13171.63885
-"25","China","Asia",72.961,1318683096,4959.114854
-"26","Colombia","Americas",72.889,44227550,7006.580419
-"27","Comoros","Africa",65.152,710960,986.1478792
-"28","Congo, Dem. Rep.","Africa",46.462,64606759,277.5518587
-"29","Congo, Rep.","Africa",55.322,3800610,3632.557798
-"30","Costa Rica","Americas",78.782,4133884,9645.06142
-"31","Cote d'Ivoire","Africa",48.328,18013409,1544.750112
-"32","Croatia","Europe",75.748,4493312,14619.22272
-"33","Cuba","Americas",78.273,11416987,8948.102923
-"34","Czech Republic","Europe",76.486,10228744,22833.30851
-"35","Denmark","Europe",78.332,5468120,35278.41874
-"36","Djibouti","Africa",54.791,496374,2082.481567
-"37","Dominican Republic","Americas",72.235,9319622,6025.374752
-"38","Ecuador","Americas",74.994,13755680,6873.262326
-"39","Egypt","Africa",71.338,80264543,5581.180998
-"40","El Salvador","Americas",71.878,6939688,5728.353514
-"41","Equatorial Guinea","Africa",51.579,551201,12154.08975
-"42","Eritrea","Africa",58.04,4906585,641.3695236
-"43","Ethiopia","Africa",52.947,76511887,690.8055759
-"44","Finland","Europe",79.313,5238460,33207.0844
-"45","France","Europe",80.657,61083916,30470.0167
-"46","Gabon","Africa",56.735,1454867,13206.48452
-"47","Gambia","Africa",59.448,1688359,752.7497265
-"48","Germany","Europe",79.406,82400996,32170.37442
-"49","Ghana","Africa",60.022,22873338,1327.60891
-"50","Greece","Europe",79.483,10706290,27538.41188
-"51","Guatemala","Americas",70.259,12572928,5186.050003
-"52","Guinea","Africa",56.007,9947814,942.6542111
-"53","Guinea-Bissau","Africa",46.388,1472041,579.231743
-"54","Haiti","Americas",60.916,8502814,1201.637154
-"55","Honduras","Americas",70.198,7483763,3548.330846
-"56","Hong Kong, China","Asia",82.208,6980412,39724.97867
-"57","Hungary","Europe",73.338,9956108,18008.94444
-"58","Iceland","Europe",81.757,301931,36180.78919
-"59","India","Asia",64.698,1110396331,2452.210407
-"60","Indonesia","Asia",70.65,223547000,3540.651564
-"61","Iran","Asia",70.964,69453570,11605.71449
-"62","Iraq","Asia",59.545,27499638,4471.061906
-"63","Ireland","Europe",78.885,4109086,40675.99635
-"64","Israel","Asia",80.745,6426679,25523.2771
-"65","Italy","Europe",80.546,58147733,28569.7197
-"66","Jamaica","Americas",72.567,2780132,7320.880262
-"67","Japan","Asia",82.603,127467972,31656.06806
-"68","Jordan","Asia",72.535,6053193,4519.461171
-"69","Kenya","Africa",54.11,35610177,1463.249282
-"70","Korea, Dem. Rep.","Asia",67.297,23301725,1593.06548
-"71","Korea, Rep.","Asia",78.623,49044790,23348.13973
-"72","Kuwait","Asia",77.588,2505559,47306.98978
-"73","Lebanon","Asia",71.993,3921278,10461.05868
-"74","Lesotho","Africa",42.592,2012649,1569.331442
-"75","Liberia","Africa",45.678,3193942,414.5073415
-"76","Libya","Africa",73.952,6036914,12057.49928
-"77","Madagascar","Africa",59.443,19167654,1044.770126
-"78","Malawi","Africa",48.303,13327079,759.3499101
-"79","Malaysia","Asia",74.241,24821286,12451.6558
-"80","Mali","Africa",54.467,12031795,1042.581557
-"81","Mauritania","Africa",64.164,3270065,1803.151496
-"82","Mauritius","Africa",72.801,1250882,10956.99112
-"83","Mexico","Americas",76.195,108700891,11977.57496
-"84","Mongolia","Asia",66.803,2874127,3095.772271
-"85","Montenegro","Europe",74.543,684736,9253.896111
-"86","Morocco","Africa",71.164,33757175,3820.17523
-"87","Mozambique","Africa",42.082,19951656,823.6856205
-"88","Myanmar","Asia",62.069,47761980,944
-"89","Namibia","Africa",52.906,2055080,4811.060429
-"90","Nepal","Asia",63.785,28901790,1091.359778
-"91","Netherlands","Europe",79.762,16570613,36797.93332
-"92","New Zealand","Oceania",80.204,4115771,25185.00911
-"93","Nicaragua","Americas",72.899,5675356,2749.320965
-"94","Niger","Africa",56.867,12894865,619.6768924
-"95","Nigeria","Africa",46.859,135031164,2013.977305
-"96","Norway","Europe",80.196,4627926,49357.19017
-"97","Oman","Asia",75.64,3204897,22316.19287
-"98","Pakistan","Asia",65.483,169270617,2605.94758
-"99","Panama","Americas",75.537,3242173,9809.185636
-"100","Paraguay","Americas",71.752,6667147,4172.838464
-"101","Peru","Americas",71.421,28674757,7408.905561
-"102","Philippines","Asia",71.688,91077287,3190.481016
-"103","Poland","Europe",75.563,38518241,15389.92468
-"104","Portugal","Europe",78.098,10642836,20509.64777
-"105","Puerto Rico","Americas",78.746,3942491,19328.70901
-"106","Reunion","Africa",76.442,798094,7670.122558
-"107","Romania","Europe",72.476,22276056,10808.47561
-"108","Rwanda","Africa",46.242,8860588,863.0884639
-"109","Sao Tome and Principe","Africa",65.528,199579,1598.435089
-"110","Saudi Arabia","Asia",72.777,27601038,21654.83194
-"111","Senegal","Africa",63.062,12267493,1712.472136
-"112","Serbia","Europe",74.002,10150265,9786.534714
-"113","Sierra Leone","Africa",42.568,6144562,862.5407561
-"114","Singapore","Asia",79.972,4553009,47143.17964
-"115","Slovak Republic","Europe",74.663,5447502,18678.31435
-"116","Slovenia","Europe",77.926,2009245,25768.25759
-"117","Somalia","Africa",48.159,9118773,926.1410683
-"118","South Africa","Africa",49.339,43997828,9269.657808
-"119","Spain","Europe",80.941,40448191,28821.0637
-"120","Sri Lanka","Asia",72.396,20378239,3970.095407
-"121","Sudan","Africa",58.556,42292929,2602.394995
-"122","Swaziland","Africa",39.613,1133066,4513.480643
-"123","Sweden","Europe",80.884,9031088,33859.74835
-"124","Switzerland","Europe",81.701,7554661,37506.41907
-"125","Syria","Asia",74.143,19314747,4184.548089
-"126","Taiwan","Asia",78.4,23174294,28718.27684
-"127","Tanzania","Africa",52.517,38139640,1107.482182
-"128","Thailand","Asia",70.616,65068149,7458.396327
-"129","Togo","Africa",58.42,5701579,882.9699438
-"130","Trinidad and Tobago","Americas",69.819,1056608,18008.50924
-"131","Tunisia","Africa",73.923,10276158,7092.923025
-"132","Turkey","Europe",71.777,71158647,8458.276384
-"133","Uganda","Africa",51.542,29170398,1056.380121
-"134","United Kingdom","Europe",79.425,60776238,33203.26128
-"135","United States","Americas",78.242,301139947,42951.65309
-"136","Uruguay","Americas",76.384,3447496,10611.46299
-"137","Venezuela","Americas",73.747,26084662,11415.80569
-"138","Vietnam","Asia",74.249,85262356,2441.576404
-"139","West Bank and Gaza","Asia",73.422,4018332,3025.349798
-"140","Yemen, Rep.","Asia",62.698,22211743,2280.769906
-"141","Zambia","Africa",42.384,11746035,1271.211593
-"142","Zimbabwe","Africa",43.487,12311143,469.7092981
+Uni_Name,Country,Enrollment,Lib_Budget,Collection_Size
+University of A0,Netherlands,35828,768.49,94965
+University of A1,Japan,20711,394.83,108214
+University of A2,India,5420,61.16,16128
+University of A3,Sweden,33216,841.94,161352
+University of A4,Italy,2301,44.13,9833
+University of A5,UK,47236,1384.2,282199
+University of A6,Netherlands,2699,73.93,10515
+University of A7,Japan,2190,34.17,6218
+University of A8,India,12492,200.39,33836
+University of A9,Sweden,37743,533.69,60423
+University of B0,Italy,8102,97.77,30586
+University of B1,UK,21778,389.59,97202
+University of B2,Netherlands,28641,779.57,139626
+University of B3,Japan,36584,381.41,90614
+University of B4,India,34745,842.9,196459
+University of B5,Sweden,25093,598.26,81266
+University of B6,Italy,2569,58.51,8523
+University of B7,UK,40210,951.6,140444
+University of B8,Netherlands,36663,530.84,147465
+University of B9,Japan,38631,919.72,93174
+University of C0,India,47681,822.67,186991
+University of C1,Sweden,9455,72.84,35068
+University of C2,Italy,6014,122.01,31468
+University of C3,UK,13093,206.6,54553
+University of C4,Netherlands,20070,537.76,67554
+University of C5,Japan,37777,701.45,141822
+University of C6,India,18538,374.99,56487
+University of C7,Sweden,12729,279.35,39473
+University of C8,Italy,36177,675.17,93895
+University of C9,UK,47017,915.93,125533
+University of D0,Netherlands,2784,67.42,9480
+University of D1,Japan,29751,436.4,146518
+University of D2,India,42864,706.87,255187
+University of D3,Sweden,42328,641.88,137183
+University of D4,Italy,14533,395.06,77277
+University of D5,UK,42111,694.47,147262
+University of D6,Netherlands,41974,809.41,118262
+University of D7,Japan,7801,132.59,36097
+University of D8,India,21190,391.15,88117
+University of D9,Sweden,40754,664.81,217895
+University of E0,Italy,31592,704.93,86861
+University of E1,UK,12647,187.12,76403
+University of E2,Netherlands,10716,141.86,53117
+University of E3,Japan,25355,436.31,93539
+University of E4,India,24009,384.36,85455
+University of E5,Sweden,26376,351.09,80233
+University of E6,Italy,47091,865.68,183415
+University of E7,UK,6780,79.32,22399
+University of E8,Netherlands,4368,125.09,21232
+University of E9,Japan,14039,176.01,46238
+University of F0,India,8655,145.13,42335
+University of F1,Sweden,42941,772.17,180029
+University of F2,Italy,6495,184.61,28548
+University of F3,UK,12893,146.32,55128
+University of F4,Netherlands,27547,570.51,77417
+University of F5,Japan,24386,614.18,111335
+University of F6,India,15403,284.21,65571
+University of F7,Sweden,34097,482.5,94605
+University of F8,Italy,15121,294.26,34895
+University of F9,UK,12966,358.32,70380
+University of G0,Netherlands,35621,602.75,172063
+University of G1,Japan,30312,823.91,140924
+University of G2,India,24677,525.46,132431
+University of G3,Sweden,33289,870.93,176176
+University of G4,Italy,33024,696.59,171458
+University of G5,UK,44675,785.3,203834
+University of G6,Netherlands,6777,191.07,30972
+University of G7,Japan,31749,670.73,105036
+University of G8,India,17338,361.19,59610
+University of G9,Sweden,4491,107.95,17921
+University of H0,Italy,29236,719.81,153984
+University of H1,UK,16599,399.44,75142
+University of H2,Netherlands,21508,284.9,86305
+University of H3,Japan,5051,84.93,24246
+University of H4,India,23606,394.63,99332
+University of H5,Sweden,23699,381.66,103404
+University of H6,Italy,2876,44.98,6728
+University of H7,UK,34093,567.47,167706
+University of H8,Netherlands,6142,133.16,25057
+University of H9,Japan,17202,386.56,85126
+University of I0,India,41734,834.34,204937
+University of I1,Sweden,9079,162.24,32174
+University of I2,Italy,9987,263.43,52053
+University of I3,UK,41567,812.31,137087
+University of I4,Netherlands,30940,763.77,115779
+University of I5,Japan,39233,672.98,159338
+University of I6,India,19019,419.72,76622
+University of I7,Sweden,48185,1287.04,204290
+University of I8,Italy,20077,139.66,43905
+University of I9,UK,28258,472.6,103909
+University of J0,Netherlands,23136,531.4,136361
+University of J1,Japan,10311,268.75,22351
+University of J2,India,19214,403.79,90830
+University of J3,Sweden,16098,325.95,79844
+University of J4,Italy,30251,848.63,103566
+University of J5,UK,39945,1053.35,168365
+University of J6,Netherlands,49030,767.67,152929
+University of J7,Japan,27945,575.17,158459
+University of J8,India,27316,595.51,154318
+University of J9,Sweden,34217,978.37,186487
+University of K0,Italy,10308,250.8,50963
+University of K1,UK,7949,154.86,40572
+University of K2,Netherlands,3150,66.47,12697
+University of K3,Japan,25944,274.5,118742
+University of K4,India,36699,911.72,165082
+University of K5,Sweden,11204,260.25,44806
+University of K6,Italy,3081,80.29,18203
+University of K7,UK,31305,603.55,130412
+University of K8,Netherlands,18896,390.02,57621
+University of K9,Japan,48175,847.56,138719
+University of L0,India,9805,139.82,31037
+University of L1,Sweden,7237,122.95,32591
+University of L2,Italy,22056,240.49,78250
+University of L3,UK,47543,1168.28,280064
+University of L4,Netherlands,47952,437.59,218490
+University of L5,Japan,5343,161.15,22703
+University of L6,India,15500,173.28,70171
+University of L7,Sweden,31375,862.8,137289
+University of L8,Italy,11662,180.29,21991
+University of L9,UK,18964,432.48,65140
+University of M0,Netherlands,49893,810.15,195193
+University of M1,Japan,10130,287.38,40840
+University of M2,India,21531,435.32,99689
+University of M3,Sweden,3679,93.33,14546
+University of M4,Italy,5506,112.21,27154
+University of M5,UK,15284,332.65,86840
+University of M6,Netherlands,9253,213.56,36027
+University of M7,Japan,21128,366.71,92113
+University of M8,India,29932,407.03,62735
+University of M9,Sweden,11435,154.28,42541
+University of N0,Italy,46078,933.27,149256
+University of N1,UK,15296,268.55,60300
+University of N2,Netherlands,32445,300.79,118551
+University of N3,Japan,15245,344,65450
+University of N4,India,31124,432.86,96055
+University of N5,Sweden,31899,452.91,184000
+University of N6,Italy,45919,908.82,129647
+University of N7,UK,45225,700.96,117306
+University of N8,Netherlands,37247,767.75,198288
+University of N9,Japan,31222,932.52,131984
+University of O0,India,28211,510.75,85830
+University of O1,Sweden,39220,576.62,207490
+University of O2,Italy,28646,598.92,133161
+University of O3,UK,40649,655.42,138166
+University of O4,Netherlands,25049,503.95,115739
+University of O5,Japan,16069,346.74,86190
+University of O6,India,34580,685.51,148261
+University of O7,Sweden,33843,686.43,160289
+University of O8,Italy,4849,101.64,21087
+University of O9,UK,42158,1179.82,231064
+University of P0,Netherlands,25289,473.8,107443
+University of P1,Japan,46690,963.55,190384
+University of P2,India,37257,906.62,160821
+University of P3,Sweden,11823,264.31,60365
+University of P4,Italy,43975,800.74,163387
+University of P5,UK,11540,282.84,52970
+University of P6,Netherlands,18364,287.28,63413
+University of P7,Japan,6611,124.72,26736
+University of P8,India,29663,478.9,77322
+University of P9,Sweden,40646,930.02,259029
+University of Q0,Italy,32977,855.69,124013
+University of Q1,UK,31168,658.16,111512
+University of Q2,Netherlands,27471,559.76,87464
+University of Q3,Japan,24687,385.73,111741
+University of Q4,India,2851,47.01,11383
+University of Q5,Sweden,20071,281.67,58221
+University of Q6,Italy,8833,80.53,35222
+University of Q7,UK,13938,251.51,64223
+University of Q8,Netherlands,37195,688.46,145037
+University of Q9,Japan,28144,868.64,98379
+University of R0,India,6000,166.88,37575
+University of R1,Sweden,7052,160.63,27752
+University of R2,Italy,37506,1141.02,122981
+University of R3,UK,30074,810.63,168871
+University of R4,Netherlands,40155,400.03,115376
+University of R5,Japan,42770,1083.68,267531
+University of R6,India,34320,808.49,141865
+University of R7,Sweden,40304,747.76,186532
+University of R8,Italy,48247,623.54,94993
+University of R9,UK,5913,135.86,18421
+University of S0,Netherlands,19450,186.8,89694
+University of S1,Japan,26107,519.34,108241
+University of S2,India,22764,385.04,126176
+University of S3,Sweden,45404,622.3,188105
+University of S4,Italy,22491,583.51,100420
+University of S5,UK,40494,801.52,214989
+University of S6,Netherlands,5373,112.13,26270
+University of S7,Japan,14161,347.5,60247
+University of S8,India,33996,678.43,111846
+University of S9,Sweden,29122,648.17,76288
+University of T0,Italy,36850,887.32,133229
+University of T1,UK,29350,670.17,90755
+University of T2,Netherlands,29472,631.58,171052
+University of T3,Japan,30761,889.47,129033
+University of T4,India,27351,716.87,100669
+University of T5,Sweden,25132,491.86,70418
+University of T6,Italy,17305,267.39,59982
+University of T7,UK,11817,274.07,41977
+University of T8,Netherlands,13261,279.53,75614
+University of T9,Japan,2417,68.99,11505
+University of U0,India,43576,1086.67,183541
+University of U1,Sweden,22358,532.59,95384
+University of U2,Italy,5267,105.68,25232
+University of U3,UK,19209,300.07,64505
+University of U4,Netherlands,26052,495.25,109549
+University of U5,Japan,40513,906.85,211037
+University of U6,India,28092,318.9,106286
+University of U7,Sweden,13338,349.57,58898
+University of U8,Italy,2412,73.17,10034
+University of U9,UK,9543,98.06,32987
+University of V0,Netherlands,42355,550.57,162554
+University of V1,Japan,35496,750.68,108546
+University of V2,India,25548,436.54,125124
+University of V3,Sweden,29384,626.01,131294
+University of V4,Italy,46425,911.86,159711
+University of V5,UK,40756,606.49,141817
+University of V6,Netherlands,20888,552.32,82550
+University of V7,Japan,37735,842.34,171396
+University of V8,India,49295,847.94,189051
+University of V9,Sweden,19506,536.91,71911
+University of W0,Italy,22463,392.16,95428
+University of W1,UK,19955,275.2,86197
+University of W2,Netherlands,39841,833.38,126564
+University of W3,Japan,7104,154.62,32381
+University of W4,India,36911,836.39,227174
+University of W5,Sweden,25190,591.51,107621
+University of W6,Italy,9357,211.29,25600
+University of W7,UK,34479,771.55,134298
+University of W8,Netherlands,46811,801.93,120167
+University of W9,Japan,38208,634.11,229285
+University of X0,India,22150,525.22,136817
+University of X1,Sweden,7644,162.18,28557
+University of X2,Italy,45286,1091.45,123466
+University of X3,UK,49320,565.39,142063
+University of X4,Netherlands,4914,85.98,19117
+University of X5,Japan,23352,689.7,70525
+University of X6,India,48352,1100.62,184356
+University of X7,Sweden,46912,1007.56,199498
+University of X8,Italy,16397,385.98,69758
+University of X9,UK,43555,1352.05,187212
+University of Y0,Netherlands,48959,1468.29,175617
+University of Y1,Japan,2728,33.02,7831
+University of Y2,India,2698,37.63,10248
+University of Y3,Sweden,41954,500.63,141466
+University of Y4,Italy,49280,801.51,227880
+University of Y5,UK,15923,322.83,65036
+University of Y6,Netherlands,18779,398.3,114052
+University of Y7,Japan,9400,116.07,41310
+University of Y8,India,26466,282.21,117595
+University of Y9,Sweden,38939,629.88,149421
+University of Z0,Italy,6360,156.33,28192
+University of Z1,UK,37270,948.59,210231
+University of Z2,Netherlands,19101,544.93,79267
+University of Z3,Japan,34307,680.59,160903
+University of Z4,India,7486,180.72,28923
+University of Z5,Sweden,10335,258.89,43058
+University of Z6,Italy,23364,409.24,72589
+University of Z7,UK,39259,861.31,131819
+University of Z8,Netherlands,25576,595.76,82622
+University of Z9,Japan,33667,520.3,142242
