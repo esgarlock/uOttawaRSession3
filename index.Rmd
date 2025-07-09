@@ -42,7 +42,7 @@ output:
 > For Session 3 you will need: 
 > 
 > * data_visualization.rmd 
->     + *This is the same notebook that I will be showing with the code removed*
+>     + *This is the same notebook that I will be showing with some of the code removed*
 >
 >  * data/
 >     + scatter.csv  
@@ -163,7 +163,7 @@ colnames(scihub_df)=c("Timestamp",
 names(scihub_df)
 ```
  
-# Information from Session 2 - Data Tidying 
+# Session 2 - Data Tidying 
 ## Basic Tidying and Analyses
 ### Selecting Columns   
 `tidyverse` uses something called `"pipes"`, which look like `%>%` or `|>`, which tells R to automatically use the last output as the input for the next function. Lets see an example. 
@@ -340,7 +340,9 @@ This is going to be an overview of making some basic plots in ggplot. We will co
    
 On this page, I have gone through and collected material that I have found to be the most helpful when learning ggplot. All of these will linked as we go through.If you want any more information on a particular topic, those would be great places to start. 
 
-First step will be to load all the libraries we might need. Make sure these are installed (if you don't know how to install packages look [here](https://www.datacamp.com/community/tutorials/r-packages-guide)) or see the earlier part of this lesson [here](#Installing Tidyverse)
+**To start, I cannot recommend the [R Graph Gallery](https://r-graph-gallery.com/) enough. It is the first place I go when I need inspiration, and is one of the most extensive resources for R graphing on the internet.**
+
+First step will be to load all the libraries we might need. Make sure these are installed (if you don't know how to install packages look [here](https://www.datacamp.com/community/tutorials/r-packages-guide)) or see the earlier part of this lesson [here](#installing-tidyverse)
 
 `ggplot2` is part of the `tidyverse` suite of packages, I like to install the whole thing at once in case I need to do any data tidying before plotting. An optional install for this lesson is `patchwork`, it is a nice package for laying out multiple plots,but it's not necessary for today's lesson. 
 
@@ -351,7 +353,7 @@ library(patchwork)
 ```
 ## A few notes on ggplot 
 
-* The [ggplot cheatsheet](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+* The [ggplot cheatsheet](https://posit.co/wp-content/uploads/2022/10/data-visualization-1.pdf)
 * ggplot has 
   + data 
   + aesthetics
@@ -399,13 +401,13 @@ ggplot(aes(aes1,aes2))+
 
 Scatter plots are an excellent first plot to start off with. There are lots of ways to manipulate scatter plots to give very informative figures-which you will see farther down on this page. 
 
-Further information on making scatter plots can be found [here](https://www.r-graph-gallery.com/320-the-basis-of-bubble-plot.html). 
+Further information on making scatter plots can be found [here](https://r-graph-gallery.com/scatterplot.html). 
 
 First thing first, load the data. What I have written in the chunk below may not work for you if you have downloaded the data separately and stored in in a different folder. You can also do `scatter=read.csv(file.choose())` to open a file navigation window and select from there. 
 
-As with anything, its always a good idea to look at the data and make sure it uploaded properly before you start plotting. This also makes sure you know what the column names are. You can see more about using `head()` in the code from [session 2](#Upload_Data)
+As with anything, its always a good idea to look at the data and make sure it uploaded properly before you start plotting. This also makes sure you know what the column names are. You can see more about using `head()` in the code from [session 2](#upload-data)
 
-This is a synthetic dataset looking at Universities, their enrollment numbers, library budget and collection size.
+This is a synthetic dataset looking at Universities, their enrollment numbers, library budget and collection size. *Note: I was asked how you could incorporate AI into learning R, one thing I decided to try was if it could make me a data set to practice with, so that is where this came from*  
 
 ```{r}
 scatter=read.csv(("data/scatter.csv"))
@@ -814,9 +816,11 @@ bar_rfl=ggplot(bar, aes(x=time,y=minutes,fill=year))+geom_bar(position="dodge",s
 * to check how many of each category you have use `table(df$col)`
 
 
-## Other Fun examples 
+## Other Fun Examples 
 
 R also allows you to make animated vizualizations. For example we can look at the number of library visitors over a period of time, using synthetic data created by Melissa and Chantal for the Power BI session.  
+
+This was another opportunity for me to explore whether AI could code. I had tried a few years ago and it wasn't perfect, so I tried with this application. The code ChatGPT gave me looked ok, but didn't actually produce the image, I still had to troubleshoot, and it was not an issue I would have been able to fix quickly if I was a beginner.
 
 ```{r eval=FALSE}
 data=read.csv("data/synthetic_gatecounts.csv")%>%
