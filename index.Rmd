@@ -21,7 +21,7 @@ output:
 > 
 > ![](notebook_images/QR.png)
 >
-> For this session you will need:   
+> For Session 2 you will need:   
 > 
 > * FileA_RMarkdown_uOttawabiblio.rmd 
 >     + *This is the same notebook that I will be showing with the code removed*
@@ -39,8 +39,19 @@ output:
 > * notebook_images/ 
 >   + *this is just the images that are in the notebook* 
 > 
+> For Session 3 you will need: 
 > 
-> But first we are going to have a general orientation about R Studio. If you are going through this at a later date, you can watch [this](https://www.youtube.com/watch?v=FIrsOBy5k58) video. 
+> * data_visualization.rmd 
+>     + *This is the same notebook that I will be showing with the code removed*
+>
+>  * data/
+>     + scatter.csv  
+>     + bar_plot.csv
+>
+
+# R Studio Orientation 
+
+At the in person session, I would now give an overview of R Studio. If you are going through this at a later date, you can watch [this](https://www.youtube.com/watch?v=FIrsOBy5k58) video. 
 
 When you first open R you should see this: 
 
@@ -317,18 +328,17 @@ head(scihub_pivot)
 ```
 # Session 3 Content -Data Visualization
 
-This is going to be a basic overview of making your some basic plots in ggplot. We will cover 
+This is going to be an overview of making some basic plots in ggplot. We will cover 
 
-* Scatterplots 
+* Scatter plots 
 * Bar Plots 
 * Box Plots 
 * Violin Plots 
-* Density Plots 
    + The aesthetics that go with them 
    
 On this page, I have gone through and collected material that I have found to be the most helpful when learning ggplot. All of these will linked as we go through.If you want any more information on a particular topic, those would be great places to start. 
 
-First step will be to load all the libaries we might need. Make sure these are installed (if you don't know how to install packages look [here](https://www.datacamp.com/community/tutorials/r-packages-guide)) or see the earlier part of this lesson [here](## Installing Tidyverse)
+First step will be to load all the libraries we might need. Make sure these are installed (if you don't know how to install packages look [here](https://www.datacamp.com/community/tutorials/r-packages-guide)) or see the earlier part of this lesson [here](## Installing Tidyverse)
 
 `ggplot2` is part of the `tidyverse` suite of packages, I like to install the whole thing at once in case I need to do any data tidying before plotting. An optional install for this lesson is `patchwork`, it is a nice package for laying out multiple plots,but it's not necessary for today's lesson. 
 
@@ -362,14 +372,18 @@ library(patchwork)
 ## Basic Anatomy of a ggplot
 
 Much like how we could assign values to variables, and then call up those variables and perform operations on those variables, we can also assign plots to variables. You do this in the same way, we see below how I assign the plot to the variable `p`. If you assign to a variable, you will have to call the variable in order for the plot to appear. 
+
 ```{r eval=FALSE}
 p=ggplot(aes(aes1,aes2))+ #these are global aesthetics that will apply to all the points (required)
-    geom_X(aes(aes1,aes2))+ #X=point|bar|violin|etc, you can have many `geom`s in one plot (required)
+    geom_X(aes(aes1,aes2))+ #X=point|bar|violin|etc, you can have many `geom`s in one plot (1 required)
     theme() # a lot of your specifications will go here (not required)
   
 p #this is how you get your plot to show up 
 ```
-You could also just get the plot to show up automatically if you don't set it to an object 
+
+You could also just get the plot to show up automatically if you don't set it to an 
+object 
+
 ```{r eval=FALSE}
 ggplot(aes(aes1,aes2))+ 
     geom_X(aes(aes1,aes2))+ 
@@ -379,13 +393,16 @@ ggplot(aes(aes1,aes2))+
 ## Scatter Plots 
 
 
-Scatterplots are an excellent first plot to start off with. There are lots of ways to manipulate scatterplots to give very informative figures-which you will see farther down on this page. 
+Scatter plots are an excellent first plot to start off with. There are lots of ways to manipulate scatter plots to give very informative figures-which you will see farther down on this page. 
 
-The data and further information on making scatterplots can be found [here](https://www.r-graph-gallery.com/320-the-basis-of-bubble-plot.html). 
+Further information on making scatter plots can be found [here](https://www.r-graph-gallery.com/320-the-basis-of-bubble-plot.html). 
 
-First thing first, load the data. What I have written in this chunk may not work for you if you have downloaded the data separately. You can also do `scatter=read.csv(file.choose())` to open a file navigation window and select from there. 
+First thing first, load the data. What I have written in this chunk may not work for you if you have downloaded the data separately and stored in in a different folder. You can also do `scatter=read.csv(file.choose())` to open a file navigation window and select from there. 
 
 As with anything, its always a good idea to look at the data and make sure it uploaded properly before you start plotting. This also makes sure you know what the column names are. You can see more about using `head()` in the code from [session 2](## Uploading data)
+
+This is a synthetic dataset looking at Universities, their enrollment numbers, library budget and collection size.
+
 ```{r}
 scatter=read.csv(("data/scatter.csv"))
 head(scatter)
@@ -393,7 +410,7 @@ head(scatter)
 
 ### Basic Scatter Pot 
 
-```{r}
+```{r message=FALSE}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point()
 
@@ -401,7 +418,7 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
 
 ### Scatter plot with trendline 
 
-Sometimes you want to add a trendline.For more information on how to get a line of best fit see the documentation for [`geom_smooth`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
+Sometimes you want to add a trend line, or line of best fit.For more information on how to get a line of best fit see the documentation for [`geom_smooth`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
@@ -412,23 +429,22 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
 ### Scatter plot with different aes for the points 
 
 When you have a lot of nice metadata associated with the variables you are plotting. It is nice to incorporate these into your figures. 
-You can normally change 
+You can normally change: 
 
 * Shape 
 * Colour 
 * Fill 
-* Alpha 
+* Alpha (aka transparency)
 * Size 
 
-Note: We have taken the log() away from the X value. 
 
-Let's change the colour of the points based on `contient` and scale the points based on `pop`
+Let's change the colour of the points based on `Country` and scale the points based on `Enrollment`
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))
 ```
 
-Lets change the shape of the points 
+Lets change the shape of the points based on `Country`, but keep the size the same.
 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
@@ -437,8 +453,12 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
 
 You can see we get a lot of strange shapes. You can specify the shapes you want by using a number code. You can find all those [here](https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/)
 
+If you want to change the shape of a point, but don't want the shape to be dependent on the value of a variable, then you can place the argument outside of the `aes()` for that geom. 
 
-
+```{r}
+ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
+  geom_point(aes(colour=Country,size=Enrollment),shape=15)
+```
 
 Whats the difference between fill and colour? Also why are there different versions of the same shape? 
 
@@ -465,9 +485,9 @@ shapef_16=ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
 
 ## Bar Charts and Violin Plots
 
-What I have written in this chunk may not work for you. You may have to do something along the lines of `bar=read.csv(file.choose())` and then select the `bar_plot.csv` from wherever you saved it on your computer. 
+For this section we need the file `bar_plot.csv`. Again to upload it, what I have written in this chunk may not work for you. You may have to do something along the lines of `bar=read.csv(file.choose())` and then select the `bar_plot.csv` from wherever you saved it on your computer. 
 
-The dataset we will be using is looking at how much sleep students in different years of school get (in minutes) at different times in the year. 
+The data set we will be using is looking at how much time (in minutes) students in different years of school spend in the library. 
 
 ### Bar Chart 
 
@@ -479,13 +499,21 @@ bar=read.csv(("data/bar_plot.csv"))
 head(bar)
 ```
 
-There are a lot of ways you can display a bar chart. It's very easy to switch between them. 
+You'll notice that this data is showing individual observations, but we have the option to automatically plot the mean of each group. As we see below, plotting individually is not very helpful or easy to read. 
 
-All of these will have `stat="summary"` and `fun.y="mean"` in the `geom_bar()`, this is how we can make sure we are plotting the means of each category. 
+```{r}
+ggplot(bar, aes(x=time,y=minutes,fill=year))+
+  geom_bar(position="dodge2",stat = "identity") #"dodge2" is telling R to plot individual values side by size, "identity" is saying to leave the values as they appear in the csv and don't do any calculations on them. 
+```
+
+Luckily, this kind of thing is really easy to fix, and we can have it automatically plot summary statistics for us, and we will do this for the rest of the plots in this section. 
+
+All of these will have `stat="summary"` and `fun="mean"` in the `geom_bar()`, this is how we can make sure we are plotting the means of each category. 
 
 ### Grouped Bar Chart 
 ```{r}
-ggplot(bar, aes(x=time,y=minutes,fill=year))+geom_bar(position="dodge",stat = "summary",fun="mean")
+ggplot(bar, aes(x=time,y=minutes,fill=year))+
+  geom_bar(position="dodge",stat = "summary",fun="mean")
 ```
 
 ### Stacked Bar Chart 
@@ -493,13 +521,15 @@ ggplot(bar, aes(x=time,y=minutes,fill=year))+geom_bar(position="dodge",stat = "s
 Changing the position will allow us to have different types of bar charts. To get it stacked, use `position="stack"`.
 
 ```{r}
-ggplot(bar, aes(x=time,y=minutes,fill=year))+geom_bar(position="stack",stat = "summary", fun= "mean")
+ggplot(bar, aes(x=time,y=minutes,fill=year))+
+  geom_bar(position="stack",stat = "summary", fun= "mean")
 ```
 
 ### Percent Bar Chart 
 
 ```{r}
-ggplot(bar, aes(x=time,y=minutes,fill=year))+geom_bar(position="fill",stat = "summary", fun= "mean")
+ggplot(bar, aes(x=time,y=minutes,fill=year))+
+  geom_bar(position="fill",stat = "summary", fun= "mean")
 ```
 
 To summarize: 
@@ -510,12 +540,13 @@ To summarize:
 
 ### Box and Whisker Plot 
 
-Box and Whisker plots are considered an improvement over the barplot because they give a better idea of the spread of the data. You can see the mean, quartiles and outliers, these are not evident with the bar plot. 
+Box and Whisker plots are considered an improvement over the bar plot because they give a better idea of the spread of the data. You can see the mean, quartiles and outliers, these are not evident with the bar plot. 
 
 More information on making box and whisker plots can be found [here](http://www.sthda.com/english/wiki/ggplot2-box-plot-quick-start-guide-r-software-and-data-visualization)
 
 ```{r}
-ggplot(bar, aes(x=time,y=minutes,fill=year))+geom_boxplot()
+ggplot(bar, aes(x=time,y=minutes,fill=year))+
+  geom_boxplot()
 ```
 
 ### Violin Plot 
@@ -652,7 +683,7 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
 
 ### Colouring 
 
-Everybody's favourite part of plotting. There is A LOT of different ways you can colour your plots. So I advise you explore this when the time comes, but there are a lot of pre-set colour schemes that look great and are easy to implement. You can find resources on them [here](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually)
+There are A LOT of different ways you can colour your plots. So I advise you explore this when the time comes, but there are a lot of pre-set colour schemes that look great and are easy to implement. You can find resources on them [here](http://www.sthda.com/english/wiki/ggplot2-colors-how-to-change-colors-automatically-and-manually)
 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
