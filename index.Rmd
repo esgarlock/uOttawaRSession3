@@ -47,6 +47,8 @@ output:
 >  * data/
 >     + scatter.csv  
 >     + bar_plot.csv
+>     + synthetic_gatecounts.csv
+>       + *We won't actually work with this one, but it's in the file*
 >
 
 # R Studio Orientation 
@@ -338,7 +340,7 @@ This is going to be an overview of making some basic plots in ggplot. We will co
    
 On this page, I have gone through and collected material that I have found to be the most helpful when learning ggplot. All of these will linked as we go through.If you want any more information on a particular topic, those would be great places to start. 
 
-First step will be to load all the libraries we might need. Make sure these are installed (if you don't know how to install packages look [here](https://www.datacamp.com/community/tutorials/r-packages-guide)) or see the earlier part of this lesson [here](## Installing Tidyverse)
+First step will be to load all the libraries we might need. Make sure these are installed (if you don't know how to install packages look [here](https://www.datacamp.com/community/tutorials/r-packages-guide)) or see the earlier part of this lesson [here](#Installing Tidyverse)
 
 `ggplot2` is part of the `tidyverse` suite of packages, I like to install the whole thing at once in case I need to do any data tidying before plotting. An optional install for this lesson is `patchwork`, it is a nice package for laying out multiple plots,but it's not necessary for today's lesson. 
 
@@ -388,6 +390,8 @@ object
 ggplot(aes(aes1,aes2))+ 
     geom_X(aes(aes1,aes2))+ 
     theme()
+
+# a plot would appear here if there was actually any data here
 ```
 
 ## Scatter Plots 
@@ -397,9 +401,9 @@ Scatter plots are an excellent first plot to start off with. There are lots of w
 
 Further information on making scatter plots can be found [here](https://www.r-graph-gallery.com/320-the-basis-of-bubble-plot.html). 
 
-First thing first, load the data. What I have written in this chunk may not work for you if you have downloaded the data separately and stored in in a different folder. You can also do `scatter=read.csv(file.choose())` to open a file navigation window and select from there. 
+First thing first, load the data. What I have written in the chunk below may not work for you if you have downloaded the data separately and stored in in a different folder. You can also do `scatter=read.csv(file.choose())` to open a file navigation window and select from there. 
 
-As with anything, its always a good idea to look at the data and make sure it uploaded properly before you start plotting. This also makes sure you know what the column names are. You can see more about using `head()` in the code from [session 2](## Uploading data)
+As with anything, its always a good idea to look at the data and make sure it uploaded properly before you start plotting. This also makes sure you know what the column names are. You can see more about using `head()` in the code from [session 2](#Upload_Data)
 
 This is a synthetic dataset looking at Universities, their enrollment numbers, library budget and collection size.
 
@@ -411,8 +415,8 @@ head(scatter)
 ### Basic Scatter Pot 
 
 ```{r message=FALSE}
-ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
-  geom_point()
+ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+# set my x and y values to the appropriate columns 
+  geom_point()#specify that I want it shown as a scatter plot 
 
 ```
 
@@ -422,8 +426,8 @@ Sometimes you want to add a trend line, or line of best fit.For more information
 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
-  geom_point()+
-  geom_smooth(method="lm")
+  geom_point()+#the first two lines are the same as above
+  geom_smooth(method="lm")#now I add another geom to specify that I would like a trendline added. method="lm" is an argument I needed to specify to say what type of trend line I wanted.
 ```
 
 ### Scatter plot with different aes for the points 
@@ -438,17 +442,17 @@ You can normally change:
 * Size 
 
 
-Let's change the colour of the points based on `Country` and scale the points based on `Enrollment`
+Let's change the colour of the points based on `Country` and size of the points based on `Enrollment`
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
-  geom_point(aes(colour=Country,size=Enrollment))
+  geom_point(aes(colour=Country,size=Enrollment))#the top line is the same, but now in the geom_point() i have added asthetics, one for colour and one for size, and specified the column that should be used for both. 
 ```
 
-Lets change the shape of the points based on `Country`, but keep the size the same.
+Now, let's change the shape of the points based on `Country`, but keep the size the same.
 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
-  geom_point(aes(shape=Country,size=Enrollment))
+  geom_point(aes(shape=Country,size=Enrollment))# same as above, but I have changed colour to shape. 
 ```
 
 You can see we get a lot of strange shapes. You can specify the shapes you want by using a number code. You can find all those [here](https://www.datanovia.com/en/blog/ggplot-point-shapes-best-tips/)
@@ -457,10 +461,12 @@ If you want to change the shape of a point, but don't want the shape to be depen
 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
-  geom_point(aes(colour=Country,size=Enrollment),shape=15)
+  geom_point(aes(colour=Country,size=Enrollment),shape=15) #notice that all the other asthetics had been inside the aes(), but shape=15 is outside, so it will apply to all points. I decided on shape 15 after consulting the link I added above. 
 ```
 
 Whats the difference between fill and colour? Also why are there different versions of the same shape? 
+
+Basically, there are some shapes that have fill AND colour, so you can change the colour of the outline AND the entire shape, others may only have one or the other. Again, the link above explains which shapes have what properties. 
 
 ```{r echo=FALSE}
 shape_21=ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
@@ -512,8 +518,8 @@ All of these will have `stat="summary"` and `fun="mean"` in the `geom_bar()`, th
 
 ### Grouped Bar Chart 
 ```{r}
-ggplot(bar, aes(x=time,y=minutes,fill=year))+
-  geom_bar(position="dodge",stat = "summary",fun="mean")
+ggplot(bar, aes(x=time,y=minutes,fill=year))+ # same first line as the others 
+  geom_bar(position="dodge",stat = "summary",fun="mean")# in here, I have specified the position, the fact I want a summary statistic plotted, and the specific statistic I want run, in this case the mean. 
 ```
 
 ### Stacked Bar Chart 
@@ -522,14 +528,14 @@ Changing the position will allow us to have different types of bar charts. To ge
 
 ```{r}
 ggplot(bar, aes(x=time,y=minutes,fill=year))+
-  geom_bar(position="stack",stat = "summary", fun= "mean")
+  geom_bar(position="stack",stat = "summary", fun= "mean")# I changed the position to stack from dodge, so now the bars will stack on top of each other. 
 ```
 
 ### Percent Bar Chart 
 
 ```{r}
 ggplot(bar, aes(x=time,y=minutes,fill=year))+
-  geom_bar(position="fill",stat = "summary", fun= "mean")
+  geom_bar(position="fill",stat = "summary", fun= "mean")# again, the only thing I changed is the position. 
 ```
 
 To summarize: 
@@ -545,7 +551,7 @@ Box and Whisker plots are considered an improvement over the bar plot because th
 More information on making box and whisker plots can be found [here](http://www.sthda.com/english/wiki/ggplot2-box-plot-quick-start-guide-r-software-and-data-visualization)
 
 ```{r}
-ggplot(bar, aes(x=time,y=minutes,fill=year))+
+ggplot(bar, aes(x=time,y=minutes,fill=year))+ #notice that this is the exact same first line as the barplot
   geom_boxplot()
 ```
 
@@ -558,7 +564,7 @@ More information on violin plots can be found [here](http://www.sthda.com/englis
 
 ```{r}
 ggplot(bar, aes(x=time,y=minutes,fill=year))+
-  geom_violin()
+  geom_violin()#again, this is the only thing we have changed 
 ```
 
 You may have noticed that for all of these, the axis are in the order final, midterm, week2. While not a big deal, it would be nice if they were week2, midterm, final. We are going to get into how to change that later. For now, we will stick to the basic plots. 
@@ -568,9 +574,9 @@ You may have noticed that for all of these, the axis are in the order final, mid
 You can also combine different types of plots and and layer them on top of each other. For example, maybe we like the overview that a violin plot gives, but still want to see the actual numbers. 
 
 ```{r}
-ggplot(bar, aes(x=time,y=minutes))+
-  geom_violin(alpha=0.8)+
-  geom_jitter(width = 0.15)
+ggplot(bar, aes(x=time,y=minutes))+ # I removed the fill argument here, just so there is not too much going on and I can more clearly demonstrate my point
+  geom_violin(alpha=0.8)+ #this is the first appearance of the transparency (alpha) argument, I set it to 0.8 (which can be understood as 80%) so we can better see the impact of the order in which we specify the geoms
+  geom_jitter(width = 0.15)# geom_jitter is very similar to geom_point(), except it ensure that no points are plotted on top of each other. The width is just how big of an area I want them to be plotted over
 ```
 Lets look at the impact of the order in which we called the layers. In the above example, we called the `geom_violin()` before we called `geom_point()`, lets try the other way around. 
 ```{r}
@@ -584,7 +590,8 @@ Because I made the violins transparent (thats what the alpha is for), we can see
 
 ## Customizing your Plots
 
-This is the same plot we made above, we haven't added any customizations. 
+This is the same plot we made above, we haven't added any customizations.  Lets start by just renaming the x and y axis. By default, they just take the name of the column the data comes from.
+
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))+
@@ -594,15 +601,18 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
 
 ### Themes 
 
-There are a lot of different themes you can use when making your plots. You can see a description of them all [here](https://ggplot2.tidyverse.org/reference/ggtheme.html), and I'll show you some examples below.
+themes are a quick way to change a lot of the visual aspects of you plot at one time. There are a lot of different themes you can use when making your plots. You can see a description of them all [here](https://ggplot2.tidyverse.org/reference/ggtheme.html), and I'll show you some examples below.
 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))+
   xlab("Library Budget")+
   ylab("Collection Size")+
-  theme_bw()
+  theme_bw()#this is the "black and white" theme 
 ```
+We can see that the background it no longer grey, and the gridlines are light grey. 
+
+Now I'm going to show a bunch of different themes, and I'm also going to add a title to each of them so that we know which plot is which. Notice here that all the plots are assigned to objects, so they are not going to automatically populate. 
 
 ```{r }
 scatter_bw=ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
@@ -635,15 +645,20 @@ scatter_minimal=ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   theme(legend.position = "none")
 ```
 
+To compare all these at once, I am now going to show you a library called patchwork. 
+
 ### Patchwork 
 
 ![](notebook_images/patchwork.png)
 
 `Patchwork` is a lovely package that allows you to very simply arrange your plots in whatever manner you like. See the documentation [here](https://github.com/thomasp85/patchwork). You can see an example of how you would use it below. 
 
+You'll notice that I used the objects that each plot was assigned to. 
+
 ```{r}
 (scatter_bw|scatter_light)/(scatter_dark|scatter_minimal)
 ```
+Now we've seen patchwork, we'll go back to customizing stuff. Let's saw we want to make more specific changes. Let's say we want to remove the gridlines in the background. 
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))+
@@ -651,8 +666,9 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   ylab("Collection Size")+
   ggtitle("Removing All Gridlines")+
   theme_bw()+
-  theme(panel.grid = element_blank())
+  theme(panel.grid = element_blank())# we have a general theme function where we can specify that we don't want any grids 
 ```
+We can also be more specific, and only remove the vertical lines by specify the `"x"` grid lines. The same could be done for the horizontal ones by specifying `"y"`
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))+
@@ -661,7 +677,7 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   ggtitle("Removing All Vertical Lines")+
   theme_bw()+
   theme(panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank())
+        panel.grid.minor.x=element_blank())
 ```
 ### Modifying the legend 
 
@@ -675,7 +691,7 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   xlab("Library Budget")+
   ylab("Collection Size")+
   ggtitle("Renaming the Legends")+
-  guides(colour=guide_legend(title="Country"),size=guide_legend(title="Enrollment"))+
+  guides(colour=guide_legend(title="Country"),size=guide_legend(title="Enrollment"))+ # I have added a guide() function to specify the titles of both of my legends. As default they just do the column name. 
   theme_bw()+
   theme(panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank())
@@ -690,7 +706,7 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))+
   xlab("Library Budget")+
   ylab("Collection Size")+
-  scale_colour_viridis_d()+
+  scale_colour_viridis_d()+ #this is where I specified the colours I wanted 
   ggtitle("Scatterplot with Viridis Colouring")+
   guides(colour=guide_legend(title="Country"),size=guide_legend(title="Enrollment"))+
   theme_bw()+
@@ -702,7 +718,7 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))+
   xlab("Library Budget")+
   ylab("Collection Size")+
-  scale_colour_brewer(palette = "Paired")+
+  scale_colour_brewer(palette = "Paired")+  # I have changed from viridis to another palette, and selected which palette I wanted from a list. 
   ggtitle("Scatterplot with Colour Brewer")+
   guides(colour=guide_legend(title="Country"),size=guide_legend(title="Enrollment"))+
   theme_bw()+
@@ -711,6 +727,7 @@ ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
 ```
 
 If you're going to get into manual colouring look [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) to figure out what kind of colours are available. 
+
 ```{r}
 ggplot(scatter,aes(x=Lib_Budget,y=Collection_Size))+
   geom_point(aes(colour=Country,size=Enrollment))+
@@ -799,7 +816,7 @@ bar_rfl=ggplot(bar, aes(x=time,y=minutes,fill=year))+geom_bar(position="dodge",s
 
 ## Other Fun examples 
 
-R also allows you to make animated vizualizations. For example we can look at the number of library visitors over a period of time: 
+R also allows you to make animated vizualizations. For example we can look at the number of library visitors over a period of time, using synthetic data created by Melissa and Chantal for the Power BI session.  
 
 ```{r eval=FALSE}
 data=read.csv("data/synthetic_gatecounts.csv")%>%
@@ -836,3 +853,4 @@ animate(plot, nframes = 100, fps = 10, width = 800, height = 600)
 
 
 ![](notebook_images/test.gif)
+ 
